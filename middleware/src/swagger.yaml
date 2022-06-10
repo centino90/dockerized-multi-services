@@ -1,0 +1,142 @@
+swagger: "2.0"
+basePath: "/v1"
+host: "localhost:9001"
+info:
+  description: "Middleware for the Vehicle Creation Sample"
+  version: "1.0.0"
+  title: "Vehicle Middleware"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "contact@amagi.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+paths: 
+  '/car':
+    get:
+      description: Retrieves All Car
+      operationId: retrieveCars
+      tags:
+        - Cars
+      responses:
+        200:
+          description: Retrieved Car
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/carBase'
+        401:
+          description: Unauthorized Access
+          schema:
+            $ref: '#/definitions/unauthorizedResponse'
+        default:
+          description: Internal Error
+          schema:
+            $ref: '#/definitions/errorResponse'
+    post:
+      description: Create new car
+      operationId: createCar
+      tags:
+        - Cars
+      parameters:
+        - in: body
+          name: car
+          required: true
+          schema:
+            $ref: "#/definitions/carParameter"
+      responses:
+        200:
+          description: Car successfully created
+          schema:
+            $ref: '#/definitions/carBase'
+        401:
+          description: Unauthorized Access
+          schema:
+            $ref: '#/definitions/unauthorizedResponse'
+        default:
+          description: Internal Error
+          schema:
+            $ref: '#/definitions/errorResponse'
+  '/motorcycle':
+    get:
+      description: Retrieves All Motorcycle
+      operationId: retrieveMotorcycles
+      tags:
+        - Motorcycles
+      responses:
+        200:
+          description: Motorcycle successfully retrieved
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/motorcycleBase'
+        401:
+          description: Unauthorized Access
+          schema:
+            $ref: '#/definitions/unauthorizedResponse'
+        default:
+          description: Internal Error
+          schema:
+            $ref: '#/definitions/errorResponse'
+    post:
+      description: Create new motorcycle
+      operationId: createMotorcycle
+      tags:
+        - Motorcycles
+      parameters:
+        - in: body
+          required: true
+          name: motorParameters
+          schema:
+            $ref: "#/definitions/motorParameters"
+      responses:
+        200:
+          description: Motorcycle Successfully created
+          schema:
+            $ref: '#/definitions/motorcycleBase'
+        401:
+          description: Unauthorized Access
+          schema:
+            $ref: '#/definitions/unauthorizedResponse'
+        default:
+          description: Internal Error
+          schema:
+            $ref: '#/definitions/errorResponse'
+definitions:
+  carParameter:
+    type: object
+    properties:
+      name:
+        type: string
+      color:
+        type: string
+  motorParameters:
+    type: object
+    properties:
+      name:
+        type: string
+      color:
+        type: string
+    properties:
+      name:
+        type: string
+      color:
+        type: string
+  carBase:
+    type: object
+  motorcycleBase:
+    type: object
+  idResponse:
+    type: object
+    properties:
+      id:
+        type: integer
+  errorResponse:
+    type: object
+    properties:
+      message:
+        type: string
+      status:
+        type: integer
+  unauthorizedResponse:
+    type: object

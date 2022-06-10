@@ -1,0 +1,5 @@
+
+
+export const VEHICLE_TYPE_CAR = "CAR"
+export const VEHICLE_TYPE_MOTORCYCLE = "MOTORCYCLE"
+
