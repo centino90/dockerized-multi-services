@@ -1,7 +1,7 @@
-import PgAsync from 'pg-async'
+import knex from 'knex';
 
 export function postgresMiddleware() {
-    const pg = new PgAsync({connectionString: 'postgres://amagi:password@postgres:5432/vehicles'})
+    const pg = new knex({connection: 'postgres://amagi:password@postgres:5432/vehicles', client: 'pg'})
     
     return async (ctx, next) => {
         ctx._postgres = pg
