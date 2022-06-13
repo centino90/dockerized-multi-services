@@ -82,9 +82,7 @@ paths:
         200:
           description: Vehicle successfully retrieved
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/vehicleBase'
+            $ref: '#/definitions/vehicleBase'
         401:
           description: Unauthorized Access
           schema:
@@ -96,6 +94,9 @@ paths:
 definitions:
   vehicleParameter:
     type: object
+    properties:
+      vehicle_type:
+        type: string
   vehicleBase:
     type: object
   errorResponse:
