@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { VEHICLE_TYPE_MOTORCYCLE } from '../constants/vehicle_types';
+import { VEHICLE_TYPE_MOTORCYCLE } from '../constants/vehicle_types.js';
 
 export const routes = (router) => {
   router

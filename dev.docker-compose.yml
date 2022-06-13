@@ -4,7 +4,8 @@ services:
     image: postgres:13
     environment:
       POSTGRES_USER: amagi
-      POSTGRES_DB: amagi
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: vehicles
     volumes:
       - ${PWD}/backend/create.sql:/docker-entrypoint-initdb.d/create.sql
     restart: always
@@ -26,7 +27,7 @@ services:
   backend:
     build:
       context: $PWD/backend
-      dockerfile: $PWD/backend/Dockerfile
+      dockerfile: $PWD/backend/dev.Dockerfile
     environment:
       POSTGRES_URI: uri
       BACKEND_URI: backend_uri
@@ -38,4 +39,4 @@ services:
       - "${PWD}/backend:/app"
     ports:
       - 9000:9000
-    command: "npm run start"
+    command: "npm run start:dev"

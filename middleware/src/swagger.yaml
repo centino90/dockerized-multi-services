@@ -11,7 +11,22 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+schemes:
+  - http
+  - https
+
 paths: 
+  '/swagger.json':
+    get:
+      tags:
+        - Spec
+      operationId: retrieveSpec
+      description: Retrieve OpenAPI spec
+      responses:
+        '200':
+          description: Successful
+          schema:
+            type: object
   '/car':
     get:
       description: Retrieves All Car
@@ -29,10 +44,6 @@ paths:
           description: Unauthorized Access
           schema:
             $ref: '#/definitions/unauthorizedResponse'
-        default:
-          description: Internal Error
-          schema:
-            $ref: '#/definitions/errorResponse'
     post:
       description: Create new car
       operationId: createCar
@@ -112,11 +123,6 @@ definitions:
         type: string
   motorParameters:
     type: object
-    properties:
-      name:
-        type: string
-      color:
-        type: string
     properties:
       name:
         type: string

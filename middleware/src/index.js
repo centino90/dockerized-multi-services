@@ -6,8 +6,8 @@ import * as swagger from 'swagger2';
 import cors from '@koa/cors';
 import { validate as swaggerValidate, ui as swaggerUI } from 'swagger2-koa';
 
-import { routes as carRoutes } from './routes/car';
-import { routes as motorcycleRoutes } from './routes/motorcycle';
+import { routes as carRoutes } from './routes/car.js';
+import { routes as motorcycleRoutes } from './routes/motorcycle.js';
 
 const origin = '*';
 const app = new Koa();
@@ -35,8 +35,9 @@ router.get('/swagger.json', ctx => {
     ctx.body = spec
 })
 
-// add validate
+app.use(swaggerValidate(spec))
 app.use(router.routes())
-app.use(swaggerUI(spec, '/', ["/v1"]))
 app.use(router.allowedMethods())
+app.use(swaggerUI(spec, '/', ['/v1']))
+
 app.listen(9001, console.log('Middleware is running at 9001'))

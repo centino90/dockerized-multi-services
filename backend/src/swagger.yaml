@@ -1,0 +1,109 @@
+swagger: "2.0"
+basePath: "/v1"
+host: "localhost:9000"
+info:
+  description: "Backend for the Vehicle Creation Sample"
+  version: "1.0.0"
+  title: "Vehicle Backend"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "contact@amagi.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+schemes:
+  - http
+  - https    
+paths: 
+  '/swagger.json':
+    get:
+      tags:
+        - Spec
+      operationId: retrieveSpec
+      description: Retrieve OpenAPI spec
+      responses:
+        '200':
+          description: Successful
+          schema:
+            type: object
+  '/vehicle':
+    get:
+      description: Retrieves All vehicles
+      operationId: retrieveAllVehicles
+      tags:
+        - Vehicles
+      responses:
+        200:
+          description: Retrieved All Vehicles
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/vehicleBase'
+        401:
+          description: Unauthorized Access
+          schema:
+            $ref: '#/definitions/unauthorizedResponse'
+    post:
+      description: Create new vehicle
+      operationId: createVehicle
+      tags:
+        - Vehicles
+      parameters:
+        - in: body
+          name: vehicle
+          required: true
+          schema:
+            $ref: "#/definitions/vehicleParameter"
+      responses:
+        200:
+          description: Vehicle successfully created
+          schema:
+            $ref: '#/definitions/vehicleBase'
+        401:
+          description: Unauthorized Access
+          schema:
+            $ref: '#/definitions/unauthorizedResponse'
+        default:
+          description: Internal Error
+          schema:
+            $ref: '#/definitions/errorResponse'
+  '/vehicle/{id}':
+    get:
+      description: Retrieve a vehicle
+      operationId: RetrieveVehicle
+      tags:
+        - Vehicles
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: string    
+      responses:
+        200:
+          description: Vehicle successfully retrieved
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/vehicleBase'
+        401:
+          description: Unauthorized Access
+          schema:
+            $ref: '#/definitions/unauthorizedResponse'
+        default:
+          description: Internal Error
+          schema:
+            $ref: '#/definitions/errorResponse'  
+definitions:
+  vehicleParameter:
+    type: object
+  vehicleBase:
+    type: object
+  errorResponse:
+    type: object
+    properties:
+      message:
+        type: string
+      status:
+        type: integer
+  unauthorizedResponse:
+    type: object

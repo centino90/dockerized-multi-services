@@ -14,7 +14,7 @@ export async function createVehicle(pg, data) {
 
   const created = await pg.value(
       `INSERT 
-      INTO vehicles (created_at, updated_at, vehicle_type, vehicle_name, color, plate_number, wheels, engine)
+      INTO vehicles (created_at, updated_at, deleted, vehicle_type, vehicle_name, color, plate_number, wheels, engine)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
       RETURNING id`,
       created_at,

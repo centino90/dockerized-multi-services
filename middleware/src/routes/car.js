@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { VEHICLE_TYPE_CAR } from '../constants/vehicle_types';
+import { VEHICLE_TYPE_CAR } from '../constants/vehicle_types.js';
 
 export const routes = (router) => {
   router
@@ -15,7 +15,8 @@ export const routes = (router) => {
 
         ctx.status = response.status !== 200 ? 400 : response.status
         ctx.body = response.status !== 200 ? {
-            message: "Failed to reach Backend Service"
+            message: "Failed to reach Backend Service",
+            status: response.status
         } : response.data
      })
     .get('/car', async (ctx) => {

@@ -1,6 +1,6 @@
-import { VEHICLE_CONSTANTS } from '../constants/vehicles';
-import { postgres } from '../postgres';
-import { getVehicle, createVehicle, getAllVehicles } from '../models/vehicles';
+import { VEHICLE_CONSTANTS } from '../constants/vehicles.js';
+import { postgres } from '../postgres.js';
+import { getVehicle, createVehicle, getAllVehicles } from '../models/vehicles.js';
 import uuid from 'uuid/v4';
 
 const invalid_vehicle_type = {
