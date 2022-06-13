@@ -19,9 +19,6 @@ services:
       BACKEND_PORT: 9001
     restart:
       always
-    volumes:
-      - "${PWD}/middleware:/app"
-      - "/app/node_modules"
     ports:
       - 9001:9001
     command: "npm start"
@@ -36,9 +33,6 @@ services:
       DEBUG: swagger2-koa:*
     restart:
       always
-    volumes:
-      - "${PWD}/backend:/app"
-      - "/app/node_modules"
     ports:
       - 9000:9000
     command: "npm start"

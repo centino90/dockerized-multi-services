@@ -19,8 +19,6 @@ services:
       BACKEND_PORT: 9001
     restart:
       always
-    volumes:
-      - "${PWD}/middleware:/app"
     ports:
       - 9001:9001
     command: "npm run start:dev"
@@ -35,8 +33,6 @@ services:
       DEBUG: swagger2-koa:*
     restart:
       always
-    volumes:
-      - "${PWD}/backend:/app"
     ports:
       - 9000:9000
     command: "npm run start:dev"
